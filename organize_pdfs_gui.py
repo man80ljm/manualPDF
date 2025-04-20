@@ -171,7 +171,7 @@ class PDFOrganizerApp:
                     image_path = os.path.join(output_dir, f"{i}.jpg")
                 image.save(image_path, "JPEG", quality=95)
                 self.progress_queue.put(f"已生成: {os.path.basename(image_path)}")
-            
+            print("print("")")
             if images:
                 os.remove(pdf_path)
                 self.progress_queue.put(f"已删除原始 PDF: {os.path.basename(pdf_path)}")
