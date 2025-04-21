@@ -1,0 +1,3 @@
+ttkbootstrap
+pdf2image
+Pillow
