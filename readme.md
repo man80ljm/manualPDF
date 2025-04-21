@@ -1,82 +1,81 @@
 PDF 文件整理工具
-这是一个用于整理 PDF 文件的工具，可以将 PDF 文件整理到带编号的文件夹中，并转换为超高清 JPG 图片，同时删除原始 PDF 文件。工具使用简单，支持实时进度显示，界面不会卡顿。
-功能
+PDF 文件整理工具
+这是一个用于整理 PDF 文件的工具，可以将 PDF 文件转换为 JPG 图片，并支持文件排序和重命名。
+1. 程序安装的依赖与库函数
+系统要求
 
-选择多个 PDF 文件。
-为每个 PDF 创建带编号的文件夹（例如 1.test）。
-将 PDF 转换为超高清 JPG 图片（例如 1.jpg, 2.jpg）。
-转换成功后自动删除原始 PDF 文件。
-实时显示处理进度，避免界面卡顿。
+操作系统：Windows（因依赖 Poppler）
+Python 版本：Python 3.6 或以上（推荐 3.10）
 
-使用方法
+依赖库
+在项目根目录运行以下命令安装依赖（建议使用虚拟环境）：
+pip install -r requirements.txt
 
-解压 PDF_Organizer.zip 文件到任意目录。解压后目录结构如下：PDF_Organizer/
-├── organize_pdfs_gui.exe
-├── poppler/
-│   ├── Library/
-│   │   ├── bin/
-│   │   │   ├── pdftoppm.exe
-│   │   │   └── ...
+如果 requirements.txt 不存在，可手动安装以下库：
+pip install ttkbootstrap pdf2image pillow -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 
-重要：请勿删除 poppler 文件夹，且确保它与 organize_pdfs_gui.exe 在同一目录下。poppler 文件夹包含工具运行所需的依赖，删除后将无法转换 PDF 为图片。
-双击 organize_pdfs_gui.exe 运行程序。
-点击“选择 PDF 文件”按钮，选择要处理的 PDF 文件。
-程序会自动处理：
-创建带编号的文件夹。
-将 PDF 转换为 JPG。
-删除原始 PDF 文件。
+ttkbootstrap：用于构建美观的 GUI 界面
+pdf2image：用于将 PDF 文件转换为图片
+pillow：用于处理图片文件
 
+其他依赖
 
-处理过程中，进度信息会实时显示在窗口中，处理完成后会弹出总结消息。
+Poppler：pdf2image 需要 Poppler 工具支持。程序已将 Poppler 打包在 assets/poppler 目录中，无需额外安装。
 
-示例
+2. 软件用法
+运行程序
 
-输入：选择一个名为 test.pdf 的文件（有 3 页）。
-输出：
-文件夹结构：1.test/
-├── 1.jpg
-├── 2.jpg
-└── 3.jpg
+确保已安装依赖（见上节）。
+在项目根目录运行：D:\manualPDF\venv\Scripts\activate
+cd D:\manualPDF
+python main.py
 
-
-界面显示：已选择 1 个 PDF 文件：
-test.pdf
-已处理: test.pdf -> 1.test
-正在转换: test.pdf
-已生成: 1.jpg
-已生成: 2.jpg
-已生成: 3.jpg
-已删除原始 PDF: test.pdf
-处理完成！成功整理 1/1 个 PDF 文件，生成 3 张图片。
+或直接运行打包后的 EXE（无需安装 Python）：cd D:\manualPDF\dist\PDFOrganizer
+PDFOrganizer.exe
 
 
 
+功能说明
+
+选择 PDF 文件：点击“选择 PDF 文件”按钮，选择一个或多个 PDF 文件。
+转换与整理：
+程序会将每个 PDF 文件转换为 JPG 图片（每页一个图片）。
+图片保存在与 PDF 文件同目录的子文件夹中（格式为 1.文件名、2.文件名 等）。
 
 
-注意事项
-
-Poppler 依赖：poppler 文件夹是工具运行的必要依赖，请勿删除或移动。如果缺少 poppler 文件夹，程序将无法转换 PDF 文件，并会提示错误。
-权限：确保目标文件夹有写入和删除权限，否则可能无法创建文件夹或删除 PDF 文件。
-系统兼容性：本工具适用于 Windows 系统。
-杀毒软件：某些杀毒软件可能误报 .exe 文件为病毒，请将其添加到白名单。
-
-常见问题
-
-程序启动时提示“无法找到 Poppler”？
-确保 poppler 文件夹存在，且与 organize_pdfs_gui.exe 在同一目录下。
-检查 poppler/Library/bin 目录下是否有 pdftoppm.exe 文件。
+命名与排序设置：
+点击“命名和排序设置”按钮，可以调整文件命名规则和排序方式。
+支持使用原文件名（添加页码后缀）或跳过手动排序。
 
 
-转换 PDF 失败？
-确认 PDF 文件是否损坏。
-确保有足够的磁盘空间来保存生成的 JPG 文件。
-检查目标文件夹是否有写入权限。
+预览与重命名：
+在排序和重命名对话框中，可以预览 PDF 文件的第一页。
+双击列表中的文件名可进行重命名。
 
 
 
-联系方式
-如果有任何问题或建议，请联系开发者：[18127833715]。
+3. 打包命令
+打包命令
+使用 PyInstaller 将程序打包为 EXE 文件，确保在虚拟环境中运行以下命令：
+D:\manualPDF\venv\Scripts\activate
+cd D:\manualPDF
+D:\manualPDF\venv\Scripts\pyinstaller PDFOrganizer.spec
+
+重要说明
+
+必须使用虚拟环境的 PyInstaller：项目的依赖（如 ttkbootstrap、pdf2image）安装在虚拟环境 D:\manualPDF\venv 中。使用系统环境的 PyInstaller 可能导致依赖未被正确打包（例如 ModuleNotFoundError）。
+.spec 文件：PDFOrganizer.spec 已配置好资源文件（如 poppler 和图标），确保直接使用此文件打包。
+打包后目录：打包结果在 D:\manualPDF\dist\PDFOrganizer，包含 PDFOrganizer.exe 和所有依赖。
+
+调试
+如果打包或运行 EXE 时遇到问题：
+
+检查 pdf_organizer.log 文件，查看错误日志。
+启用 PyInstaller 调试模式：D:\manualPDF\venv\Scripts\pyinstaller --log-level DEBUG PDFOrganizer.spec
+
+
+
 
 
 假设 Poppler 已安装在 C:\poppler\Library\bin 并添加到 PATH，运行：

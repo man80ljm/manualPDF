@@ -1,0 +1,25 @@
+pdf_organizer/
+├── .git/
+├── assets/
+│   ├── pdf.ico
+│   ├── poppler/
+│   │   ├── Library/
+│   │   │   ├── bin/
+├── build/
+├── dist/
+├── gui/
+│   ├── __init__.py            # 新增
+│   ├── app.py                 # 主应用类
+│   ├── base_dialog.py         # 对话框基类
+│   ├── settings_dialog.py     # 设置对话框
+│   ├── sort_rename_dialog.py  # 排序和重命名对话框
+├── tests/                     # 新增
+│   ├── test.py                # 移到这里
+├── venv/                      # 移到这里
+├── .gitattributes
+├── config.py
+├── main.py
+├── pdf_organizer.log
+├── README.md                  # 重命名
+├── requirements.txt
+├── settings.json
