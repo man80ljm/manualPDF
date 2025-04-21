@@ -77,3 +77,13 @@ Poppler 依赖：poppler 文件夹是工具运行的必要依赖，请勿删除�
 
 联系方式
 如果有任何问题或建议，请联系开发者：[18127833715]。
+
+
+假设 Poppler 已安装在 C:\poppler\Library\bin 并添加到 PATH，运行：
+
+pdftoppm -v
+
+输出：
+pdftoppm version 24.07.0
+Copyright 2005-2024 The Poppler Developers - http://poppler.freedesktop.org
+Copyright 1996-2011, 2022 Glyph & Cog, LLC
